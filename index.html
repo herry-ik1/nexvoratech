@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Nexvora - Innovative Digital Solutions</title>
+    
+    <!-- Favicon - Same folder mein favicon.ico -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Light Mode Variables */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --navbar-bg: rgba(255, 255, 255, 0.95);
+            --text-color: #333;
+            --text-secondary: #666;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --service-bg: rgba(255, 255, 255, 0.95);
+            --footer-bg: rgba(255, 255, 255, 0.95);
+            --mission-bg: linear-gradient(135deg, #f5f7ff, #ffffff);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Dark Mode Variables */
+        body.dark-mode {
+            --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --navbar-bg: rgba(26, 26, 46, 0.95);
+            --text-color: #ffffff;
+            --text-secondary: #cccccc;
+            --card-bg: rgba(26, 26, 46, 0.95);
+            --service-bg: rgba(26, 26, 46, 0.95);
+            --footer-bg: rgba(26, 26, 46, 0.95);
+            --mission-bg: linear-gradient(135deg, #1a1a2e, #16213e);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            transition: background 0.5s ease, color 0.3s ease;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: var(--navbar-bg);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-logo {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: clamp(20px, 3vw, 40px);
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: clamp(14px, 2vw, 16px);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #667eea;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .dark-mode-toggle svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 20px 5%;
+        }
+
+        /* Home Section */
+        .home-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .hero-card {
+            max-width: 1200px;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 32px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: clamp(24px, 5vw, 60px);
+            align-items: center;
+        }
+
+        .hero-text {
+            text-align: left;
+        }
+
+        .logo {
+            font-size: clamp(28px, 6vw, 48px);
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: clamp(18px, 4vw, 24px);
+            color: var(--text-color);
+            margin-bottom: 24px;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .description {
+            font-size: clamp(16px, 3.5vw, 18px);
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: clamp(12px, 3vw, 16px) clamp(24px, 5vw, 40px);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: clamp(14px, 3.5vw, 16px);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Image Slideshow */
+        .image-slideshow {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .slideshow-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            animation: imageSlide 25s infinite;
+        }
+
+        .slideshow-img:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .slideshow-img:nth-child(2) {
+            animation-delay: 5s;
+        }
+
+        .slideshow-img:nth-child(3) {
+            animation-delay: 10s;
+        }
+
+        .slideshow-img:nth-child(4) {
+            animation-delay: 15s;
+        }
+
+        .slideshow-img:nth-child(5) {
+            animation-delay: 20s;
+        }
+
+        @keyframes imageSlide {
+            0%, 15% { opacity: 0; }
+            20%, 35% { opacity: 1; }
+            40%, 100% { opacity: 0; }
+        }
+
+        /* Services Section */
+        .services-section {
+            min-height: 100vh;
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 5vw, 40px);
+            color: white;
+            text-align: center;
+            margin-bottom: 50px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(16px, 3vw, 24px);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-item {
+            background: var(--service-bg);
+            padding: clamp(20px, 4vw, 30px);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            background: var(--card-bg);
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .service-item h3 {
+            font-size: clamp(20px, 4vw, 24px);
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .service-item p {
+            font-size: clamp(14px, 3.5vw, 16px);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about-section {
+            min-height: 100vh;
+            padding: 80px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 32px;
+            padding: clamp(30px, 5vw, 60px);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .about-container h2 {
+            font-size: clamp(32px, 5vw, 42px);
+            color: var(--text-color);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .about-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .mission-box, .vision-box {
+            background: var(--mission-bg);
+            padding: 35px;
+            border-radius: 20px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .mission-box:hover, .vision-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .mission-box h3, .vision-box h3 {
+            font-size: 26px;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mission-box p, .vision-box p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            min-height: 100vh;
+            padding: 80px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 32px;
+            padding: clamp(30px, 5vw, 60px);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .contact-header h2 {
+            font-size: clamp(32px, 5vw, 42px);
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+
+        .contact-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: var(--mission-bg);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            text-align: left;
+        }
+
+        .info-item:hover {
+            transform: translateX(10px);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .info-text h4 {
+            font-size: 18px;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .info-text p {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .info-text a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .info-text a:hover {
+            text-decoration: underline;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px 40px;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: clamp(18px, 4vw, 24px);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto 0;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+            background: #20b859;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-toggle svg {
+            width: 25px;
+            height: 25px;
+            fill: white;
+        }
+
+        .chatbot-panel {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 300px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: none;
+        }
+
+        .chatbot-panel.active {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header h3 {
+            font-size: 16px;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatbot-messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+            background: var(--mission-bg);
+        }
+
+        .message {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message.bot {
+            align-items: flex-start;
+        }
+
+        .message.user {
+            align-items: flex-end;
+        }
+
+        .message-content {
+            max-width: 85%;
+            padding: 10px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            line-height: 1.4;
+            color: var(--text-color);
+        }
+
+        .bot .message-content {
+            background: var(--card-bg);
+            border-bottom-left-radius: 5px;
+        }
+
+        .user .message-content {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 10px;
+            background: var(--card-bg);
+            border-top: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+            outline: none;
+            font-size: 13px;
+            background: var(--mission-bg);
+            color: var(--text-color);
+        }
+
+        .chatbot-input input:focus {
+            border-color: #667eea;
+        }
+
+        .chatbot-input button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin-left: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .chatbot-input button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--footer-bg);
+            padding: 40px 5%;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-content p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Add this to your existing CSS */
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    border-radius: 10px;
+    font-size: 16px;
+    background: var(--mission-bg);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-secondary);
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+}
+
+.form-status {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 10px;
+    display: none;
+}
+
+.form-status.success {
+    display: block;
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.form-status.error {
+    display: block;
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* WhatsApp Icon */
+.whatsapp-icon {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    width: 50px;
+    height: 50px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.whatsapp-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .whatsapp-icon {
+        left: 15px;
+        bottom: 15px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-right {
+                gap: 15px;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: var(--navbar-bg);
+                backdrop-filter: blur(10px);
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                transition: 0.3s;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chatbot-panel {
+                width: 280px;
+                right: -10px;
+            }
+            
+            .info-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .image-slideshow {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a class="nav-logo" onclick="scrollToSection('home')">Nexvora</a>
+        <div class="nav-right">
+            <ul class="nav-menu" id="navMenu">
+                <li><a onclick="scrollToSection('home'); closeMenu()">Home</a></li>
+                <li><a onclick="scrollToSection('services'); closeMenu()">Services</a></li>
+                <li><a onclick="scrollToSection('about'); closeMenu()">About</a></li>
+                <li><a onclick="scrollToSection('contact'); closeMenu()">Contact</a></li>
+            </ul>
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()" id="darkModeToggle">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+                </svg>
+            </button>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Home Section with Image Slideshow -->
+        <section id="home" class="home-section">
+            <div class="hero-card">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="logo">Nexvora</div>
+                        <div class="tagline">Innovative Digital Solutions</div>
+                        <p class="description">Nexvora is dedicated to delivering innovative digital solutions that help businesses grow efficiently and achieve their full potential in the digital age.</p>
+                        <a class="btn" onclick="scrollToSection('services')">Explore Services →</a>
+                    </div>
+                    <div class="image-slideshow">
+                        <img class="slideshow-img" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Coding">
+                        <img class="slideshow-img" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Web Development">
+                        <img class="slideshow-img" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="AI Technology">
+                        <img class="slideshow-img" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cyber Security">
+                        <img class="slideshow-img" src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Graphic Design">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services-section">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-item" onclick="showServiceInfo('web')">
+                    <div class="service-icon">💻</div>
+                    <h3>Web Development</h3>
+                    <p>Custom websites, e-commerce solutions, and web applications built with modern technologies for optimal performance.</p>
+                </div>
+                
+                <div class="service-item" onclick="showServiceInfo('app')">
+                    <div class="service-icon">📱</div>
+                    <h3>App Development</h3>
+                    <p>Native and cross-platform mobile applications that deliver seamless user experiences on iOS and Android.</p>
+                </div>
+                
+                <div class="service-item" onclick="showServiceInfo('ai')">
+                    <div class="service-icon">🤖</div>
+                    <h3>AI Chatbot</h3>
+                    <p>Intelligent chatbot solutions powered by AI to automate customer support and enhance user engagement.</p>
+                </div>
+                
+                <div class="service-item" onclick="showServiceInfo('graphic')">
+                    <div class="service-icon">🎨</div>
+                    <h3>Graphic Designing</h3>
+                    <p>Creative design solutions including logos, branding, marketing materials, and visual content.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <h2>About Nexvora</h2>
+                <p class="about-description">We are a team of passionate developers, designers, and strategists dedicated to transforming ideas into powerful digital solutions. With years of experience and a client-centric approach, we've helped numerous businesses establish their digital presence and achieve remarkable growth.</p>
+                
+                <div class="mission-vision">
+                    <div class="mission-box">
+                        <h3>🎯 Our Mission</h3>
+                        <p>To empower businesses with cutting-edge digital solutions that drive growth, enhance user experiences, and create lasting value in the digital landscape. We strive to make technology accessible and effective for every client.</p>
+                    </div>
+                    
+                    <div class="vision-box">
+                        <h3>✨ Our Vision</h3>
+                        <p>To become a global leader in digital innovation, known for transforming complex challenges into simple, elegant solutions. We envision a future where every business, regardless of size, can leverage technology to achieve its full potential.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+       <!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="contact-container">
+        <div class="contact-header">
+            <h2>Get In Touch</h2>
+            <p>Have a project in mind? We'd love to hear about it! Let's discuss how we can help your business grow.</p>
+        </div>
+        
+        <!-- Contact Form -->
+        <form id="contactForm" class="contact-form" onsubmit="sendEmail(event)">
+            <div class="form-group">
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+        
+        <div id="formStatus" class="form-status"></div>
+        
+        <!-- WhatsApp Button - Left Side -->
+        <a href="https://wa.me/923702063488?text=Hi%20Nexvora!%20I'm%20interested%20in%20your%20services." 
+           class="whatsapp-icon" 
+           target="_blank">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+                <path d="M19.077 4.928C17.191 3.041 14.683 2 12.006 2c-5.349 0-9.703 4.352-9.706 9.698 0 1.71.447 3.381 1.297 4.865L2 22l5.521-1.447c1.424.776 3.028 1.186 4.677 1.186h.004c5.348 0 9.703-4.352 9.706-9.698.001-2.592-1.007-5.028-2.894-6.915zM12.02 20.202h-.003c-1.458 0-2.886-.392-4.124-1.13l-.296-.176-3.276.859.875-3.195-.193-.307c-.806-1.282-1.233-2.764-1.232-4.291.003-4.44 3.616-8.053 8.062-8.053 2.152 0 4.177.84 5.698 2.364 1.522 1.524 2.359 3.55 2.357 5.702-.002 4.442-3.617 8.053-8.062 8.053zm4.424-6.027c-.243-.121-1.433-.707-1.655-.788-.222-.081-.384-.121-.546.121-.162.242-.636.788-.78.95-.144.162-.288.182-.531.061-.975-.485-1.614-.865-2.253-1.467-.846-.715-1.417-1.548-1.583-1.81-.166-.263-.018-.404.125-.535.128-.121.284-.313.425-.47.142-.157.189-.263.284-.434.094-.172.047-.323-.024-.454-.071-.131-.546-1.315-.747-1.8-.197-.474-.398-.404-.546-.414-.142-.009-.304-.01-.466-.01s-.424.061-.646.303c-.222.242-.849.83-.849 2.026 0 1.196.871 2.353.992 2.515.121.162 1.713 2.616 4.149 3.668.58.247 1.033.395 1.385.507.583.182 1.114.157 1.533.095.468-.071 1.433-.586 1.635-1.151.202-.566.202-1.051.141-1.151-.061-.101-.222-.162-.465-.283z"/>
+            </svg>
+        </a>
+    </div>
+</section>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-toggle" onclick="toggleChatbot()">
+            <svg viewBox="0 0 24 24">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+            </svg>
+        </div>
+        <div class="chatbot-panel" id="chatbotPanel">
+            <div class="chatbot-header">
+                <h3>Nexvora AI Assistant</h3>
+                <div class="header-buttons">
+                    <button class="header-btn" onclick="minimizeChatbot()">−</button>
+                    <button class="header-btn" onclick="toggleChatbot()">×</button>
+                </div>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="message-content">Hello! 👋 Welcome to Nexvora! How can I help you today?</div>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="userInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Nexvora. All rights reserved. | Innovative Digital Solutions</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            
+            // Update toggle icon
+            const toggle = document.getElementById('darkModeToggle');
+            if (body.classList.contains('dark-mode')) {
+                toggle.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>';
+            } else {
+                toggle.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>';
+            }
+        }
+
+        // Smooth scroll function
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Navbar functionality
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.remove('active');
+        }
+
+        // Service info for chatbot
+        function showServiceInfo(service) {
+            const serviceMessages = {
+                web: "🌐 Web Development Services:\n\n• Custom Website Development\n• E-commerce Solutions\n• CMS Development\n• Web Applications\n• API Integration\n• Website Maintenance\n\nWould you like to discuss your web project?",
+                app: "📱 App Development Services:\n\n• iOS App Development\n• Android App Development\n• Cross-platform Apps (React Native, Flutter)\n• App UI/UX Design\n• App Testing & Maintenance\n• App Store Publication\n\nInterested in building an app?",
+                ai: "🤖 AI Chatbot Services:\n\n• Custom Chatbot Development\n• AI & ML Integration\n• Natural Language Processing\n• 24/7 Customer Support\n• Multi-language Support\n• WhatsApp/FB Messenger Bots\n\nWant to automate your customer support?",
+                graphic: "🎨 Graphic Designing Services:\n\n• Logo Design\n• Brand Identity\n• Marketing Materials\n• Social Media Graphics\n• Print Design\n• UI/UX Design\n\nReady to elevate your brand?"
+            };
+            
+            const chatbotPanel = document.getElementById('chatbotPanel');
+            if (!chatbotPanel.classList.contains('active')) {
+                toggleChatbot();
+            }
+            
+            setTimeout(() => {
+                addBotMessage(serviceMessages[service]);
+            }, 500);
+        }
+
+        // Chatbot functionality
+        function toggleChatbot() {
+            const panel = document.getElementById('chatbotPanel');
+            panel.classList.toggle('active');
+        }
+
+        function minimizeChatbot() {
+            const panel = document.getElementById('chatbotPanel');
+            panel.classList.remove('active');
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('userInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addUserMessage(message);
+                processMessage(message);
+                input.value = '';
+            }
+        }
+
+        function addUserMessage(message) {
+            const messages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user';
+            messageDiv.innerHTML = `<div class="message-content">${message}</div>`;
+            messages.appendChild(messageDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function addBotMessage(message) {
+            const messages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot';
+            messageDiv.innerHTML = `<div class="message-content">${message.replace(/\n/g, '<br>')}</div>`;
+            messages.appendChild(messageDiv);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function processMessage(message) {
+            const lowerMsg = message.toLowerCase();
+            let response = '';
+
+            if (lowerMsg.includes('hello') || lowerMsg.includes('hi') || lowerMsg.includes('hey') || lowerMsg.includes('salam')) {
+                response = 'Hello! 👋 Welcome to Nexvora! How can I help you today?';
+            }
+            else if (lowerMsg.includes('web') || lowerMsg.includes('website')) {
+                response = '🌐 Web Development Services:\n\n• Custom Website Development\n• E-commerce Solutions\n• CMS Development\n• Web Applications\n• API Integration\n• Website Maintenance\n\nWould you like to discuss your web project?';
+            }
+            else if (lowerMsg.includes('app') || lowerMsg.includes('mobile')) {
+                response = '📱 App Development Services:\n\n• iOS App Development\n• Android App Development\n• Cross-platform Apps\n• App UI/UX Design\n• App Testing & Maintenance\n• App Store Publication\n\nInterested in building an app?';
+            }
+            else if (lowerMsg.includes('ai') || lowerMsg.includes('chatbot') || lowerMsg.includes('bot')) {
+                response = '🤖 AI Chatbot Services:\n\n• Custom Chatbot Development\n• AI & ML Integration\n• Natural Language Processing\n• 24/7 Customer Support\n• Multi-language Support\n• WhatsApp/FB Messenger Bots\n\nWant to automate your customer support?';
+            }
+            else if (lowerMsg.includes('graphic') || lowerMsg.includes('design') || lowerMsg.includes('logo')) {
+                response = '🎨 Graphic Designing Services:\n\n• Logo Design\n• Brand Identity\n• Marketing Materials\n• Social Media Graphics\n• Print Design\n• UI/UX Design\n\nReady to elevate your brand?';
+            }
+            else if (lowerMsg.includes('price') || lowerMsg.includes('pricing') || lowerMsg.includes('cost') || lowerMsg.includes('charges') || lowerMsg.includes('rate')) {
+                response = '💰 For pricing details, please contact us on WhatsApp. Our team will provide you with a customized quote based on your requirements.\n\nClick the WhatsApp button below to chat with us! 👇';
+            }
+            else if (lowerMsg.includes('service')) {
+                response = 'We offer the following services:\n\n💻 Web Development\n📱 App Development\n🤖 AI Chatbot\n🎨 Graphic Designing\n\nWhich service would you like to know more about?';
+            }
+            else {
+                response = 'I can help you with information about our services:\n\n• Web Development\n• App Development\n• AI Chatbot\n• Graphic Designing\n\nJust ask me about any service!';
+            }
+
+            setTimeout(() => {
+                addBotMessage(response);
+            }, 1000);
+        }
+
+        window.showServiceInfo = showServiceInfo;
+        // Add this at the end of your script section
+
+// Email sending function
+async function sendEmail(event) {
+    event.preventDefault();
+    
+    const form = document.getElementById('contactForm');
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+    };
+    
+    const statusDiv = document.getElementById('formStatus');
+    statusDiv.className = 'form-status';
+    statusDiv.style.display = 'block';
+    statusDiv.textContent = 'Sending...';
+    
+    try {
+        const response = await fetch('/.netlify/functions/send-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+            statusDiv.className = 'form-status success';
+            statusDiv.textContent = 'Message sent successfully! We\'ll get back to you soon.';
+            form.reset();
+        } else {
+            throw new Error(result.error || 'Failed to send message');
+        }
+    } catch (error) {
+        statusDiv.className = 'form-status error';
+        statusDiv.textContent = 'Failed to send message. Please try again or contact on WhatsApp.';
+        console.error('Error:', error);
+    }
+    
+    setTimeout(() => {
+        statusDiv.style.display = 'none';
+    }, 5000);
+}
+    </script>
+</body>
