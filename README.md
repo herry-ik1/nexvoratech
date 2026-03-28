@@ -20,13 +20,6 @@ A modern, responsive business website for Nexvora, featuring a sleek dark theme,
 - JavaScript (ES6+)
 - Netlify Functions (Email handling)
 
-##  Project Structure
-nexvoratech/
-├── index.html # Main HTML file
-├── favicon.png # Website favicon
-└── README.md # Project documentation
-
-
 ##  Live Demo
 
 [View Live Website](https://nexvoratech.netlify.app)
